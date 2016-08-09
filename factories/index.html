@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Factories</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0'>
+
+  <style>
+    body {
+      font-size: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+h1 {
+  font-size: 30px;
+  padding: 10px;
+}
+p {
+  font-size: 14px;
+  padding: 10px;
+}
+    .col {
+      display: inline-block;
+      width: 48%;
+      vertical-align: top;
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    pre {
+      padding: 10px;
+      border: 1px solid #a9a9a9;
+    }
+
+    .message {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 14px;
+      background: #fafaf0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>JS Factory Functions</h1>
+  <p>As you can see, not only is the factory function shorter than the class, if you clickety-clickety the buttons, you will see that foxes are more talkative than dogs!</p>
+  <div class="col">
+    <h2>Factory</h2>
+    <pre>
+const fox = () => {
+  const sound = 'ring ding ding ding'
+  return {
+    talk: () => $('#message_1').append(sound)
+  }
+}
+const megan = fox() // megan is a new fox
+megan.talk() // run on load
+$('#button_1').click(megan.talk) // run on click
+    </pre>
+    <button id="button_1">What does the fox say?</button>
+    <br>
+    <div id="message_1" class="message"></div>
+  </div>
+  <div class="col">
+    <h2>Class</h2>
+    <pre>
+class Barker {
+  constructor() {
+    this.sound = 'bark'
+  }
+  talk() {
+    $('#message_2').append(this.sound)
+  }
+}
+const sue = new Barker() // sue is a new dog
+sue.talk() // run on load
+$('#button_2').click(sue.talk) // run on click
+    </pre>
+    <button id="button_2">What does the dog say?</button>
+    <br>
+    <div id="message_2" class="message"></div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script>
+    const fox = () => {
+      const sound = 'ring ding ding ding'
+      return {
+        talk: () => $('#message_1').append(sound)
+      }
+    }
+    const megan = fox() // megan is a new fox
+    megan.talk() // run on load
+    $('#button_1').click(megan.talk) // run on click
+
+
+
+
+    class Barker {
+      constructor() {
+        this.sound = 'bark'
+      }
+      talk() {
+        $('#message_2').append(this.sound)
+      }
+    }
+
+    const sue = new Barker() // sue is a new dog
+    sue.talk() // run on load
+    $('#button_2').click(sue.talk) // run on click
+  </script>
+</body>
+
+</html>

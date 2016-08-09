@@ -1,0 +1,10 @@
+body {
+	padding: 40px;
+	line-height: 2;
+}
+
+body td:nth-child(even) {
+	padding-left: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
