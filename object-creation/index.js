@@ -1,58 +1,41 @@
 "use strict"
 
-function talk() {
-  console.log(this)
-  console.log(this.sound)
-}
-
-let animal = {
-  talk,
-  move: talk
-}
-
-let cat = {
-  sound: 'meow!',
-  move: 'walk'
-
-}
-
-let kiitos = {
-  sound: 'meep!'
-}
-
-Object.setPrototypeOf(cat, animal)
-Object.setPrototypeOf(kiitos, cat)
-
-cat.talk()
-kiitos.talk()
-
-// My own version!
-"use strict"
-
-function behave() {
-    //console.log(this)
-    console.log(this.type + " likes to " + this.move + " and says " + this.sound + " but doesn't like " + this.dislike)
+function describe() {
+    let petName = this.name || this.type // If your pet has no name, refer to it by its type
+    let petActivity = this.activity || 'walk' // What does your pet like to do?
+    let petSound = this.sound || 'nothing' // What does the fox say? PS Note the Beach Boys reference!
+    let petHate = this.dislike || 'anything' // Does your pet hate anything?
+    // Spit this to the console, brah!
+    console.log(petName + " likes to " + petActivity + " and says " + petSound + " but doesn't like " + petHate)
 }
 
 const Animal = {
-    dislike: 'baths',
-    behave
+    dislike: 'baths', // All animals hate baths, irrespective
+    describe // run teh describe function
 }
-
 
 const Dog = {
     type: "dog",
-    move: "run",
+    activity: "run",
     sound: "woof"
 }
 
-const Captain = {
+const Corgi = {
     type: "corgi",
-    sound: "yap!"
+    sound: "yap"
 }
 
-Object.setPrototypeOf(Dog, Animal)
-Object.setPrototypeOf(Captain, Dog)
+const Alfie = {
+    name: 'alfie',
+    type: 'dog',
+    sound: "yip yip snuffle",
+    activity: 'sleep'
+}
 
-Captain.behave()
-Dog.behave()
+Object.setPrototypeOf(Dog, Animal) // Dog is a type of animal
+Object.setPrototypeOf(Corgi, Dog) // Corgi is a type of dog
+Object.setPrototypeOf(Alfie, Corgi) // Alfie is a type of corgi, which is also a type of dog
+
+Dog.describe()
+Corgi.describe()
+Alfie.describe()
