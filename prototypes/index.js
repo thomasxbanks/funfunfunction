@@ -1,50 +1,48 @@
-// Create the object of 'FOOD'
+"use strict"
 
-const food = {
-  // Food has a type and a cooking method
-    init: function(type, method) {
-        this.type = type,
-        this.method = method
-    },
-    eat: function() {
-      // Eat the food, Tina
-        console.log("you eat the " + this.type)
-    },
-    cook: function() {
-      // Cook the food, Tina
-        console.log("you " + this.method + " the " + this.type)
-    }
+function describe() {
+    let petName = this.name || this.type // If your pet has no name, refer to it by its type
+    let petActivity = this.activity || 'walk' // What does your pet like to do?
+    let petSound = this.sound || 'nothing' // What does the fox say? PS Note the Beach Boys reference!
+    let petHate = this.dislike || 'nothing' // Does your pet hate anything?
+    // Spit this to the console, brah!
+    console.log(petName + " likes to " + petActivity + " and says " + petSound + " but doesn't like " + petHate)
 }
 
-const waffle = Object.create(food)
-waffle.init('waffle', 'griddle')
-waffle.cook()
-waffle.eat()
+const Animal = {
+    describe // run teh describe function
+}
 
-food.init('bacon', 'grill')
-food.cook()
-food.eat()
+const Racoon = {
+  type: 'racoon',
+  sound: 'silent (like your screams)'
+}
 
-const carrot = Object.create(food)
-carrot.init('carrot', 'boil')
-carrot.cook()
-carrot.eat()
-food.cook()
-food.eat()
+const Dog = {
+    type: "dog",
+    activity: "run",
+    sound: "woof",
+    dislike: 'baths'
+}
 
-const findusCrispyPancakes = new Object(food)
-findusCrispyPancakes.init('findus crispy pancakes', 'oven')
-findusCrispyPancakes.cook()
-findusCrispyPancakes.eat()
-food.cook()
-food.eat()
+const Corgi = {
+    type: "corgi",
+    sound: "yap"
+}
 
+const Alfie = {
+    name: 'alfie',
+    type: 'dog',
+    sound: "yip yip snuffle",
+    activity: 'sleep'
+}
 
-food.init('eggs', 'fry')
-food.cook()
-food.eat()
+Object.setPrototypeOf(Dog, Animal) // Dog is a type of animal
+Object.setPrototypeOf(Racoon, Animal) // Dog is a type of animal
+Object.setPrototypeOf(Corgi, Dog) // Corgi is a type of dog
+Object.setPrototypeOf(Alfie, Corgi) // Alfie is a type of corgi, which is also a type of dog
 
-
-console.log("waffle is food:", food.isPrototypeOf(waffle))
-console.log("int is food:", food.isPrototypeOf(654654654))
-console.log("carrot is food:", food.isPrototypeOf(carrot))
+Dog.describe()
+Corgi.describe()
+Alfie.describe()
+Racoon.describe()
