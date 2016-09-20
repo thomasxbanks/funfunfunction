@@ -1,58 +1,48 @@
 "use strict"
 
-function talk() {
-  console.log(this)
-  console.log(this.sound)
-}
-
-let animal = {
-  talk,
-  move: talk
-}
-
-let cat = {
-  sound: 'meow!',
-  move: 'walk'
-
-}
-
-let kiitos = {
-  sound: 'meep!'
-}
-
-Object.setPrototypeOf(cat, animal)
-Object.setPrototypeOf(kiitos, cat)
-
-cat.talk()
-kiitos.talk()
-
-// My own version!
-"use strict"
-
-function behave() {
-    //console.log(this)
-    console.log(this.type + " likes to " + this.move + " and says " + this.sound + " but doesn't like " + this.dislike)
+function describe() {
+    let petName = this.name || this.type // If your pet has no name, refer to it by its type
+    let petActivity = this.activity || 'walk' // What does your pet like to do?
+    let petSound = this.sound || 'nothing' // What does the fox say? PS Note the Beach Boys reference!
+    let petHate = this.dislike || 'nothing' // Does your pet hate anything?
+    // Spit this to the console, brah!
+    console.log(petName + " likes to " + petActivity + " and says " + petSound + " but doesn't like " + petHate)
 }
 
 const Animal = {
-    dislike: 'baths',
-    behave
+    describe // run teh describe function
 }
 
+const Racoon = {
+  type: 'racoon',
+  sound: 'silent (like your screams)'
+}
 
 const Dog = {
     type: "dog",
-    move: "run",
-    sound: "woof"
+    activity: "run",
+    sound: "woof",
+    dislike: 'baths'
 }
 
-const Captain = {
+const Corgi = {
     type: "corgi",
-    sound: "yap!"
+    sound: "yap"
 }
 
-Object.setPrototypeOf(Dog, Animal)
-Object.setPrototypeOf(Captain, Dog)
+const Alfie = {
+    name: 'alfie',
+    type: 'dog',
+    sound: "yip yip snuffle",
+    activity: 'sleep'
+}
 
-Captain.behave()
-Dog.behave()
+Object.setPrototypeOf(Dog, Animal) // Dog is a type of animal
+Object.setPrototypeOf(Racoon, Animal) // Dog is a type of animal
+Object.setPrototypeOf(Corgi, Dog) // Corgi is a type of dog
+Object.setPrototypeOf(Alfie, Corgi) // Alfie is a type of corgi, which is also a type of dog
+
+Dog.describe()
+Corgi.describe()
+Alfie.describe()
+Racoon.describe()
